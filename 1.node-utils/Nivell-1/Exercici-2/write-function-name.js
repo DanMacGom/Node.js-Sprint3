@@ -1,3 +1,6 @@
+// Nivell 1
+// Exercici 2
+// Creu una funció que, en executar-la, escrigui el seu nom en un fitxer.
 const fs = require("fs");
 
 const fancy_function_name = function(){}

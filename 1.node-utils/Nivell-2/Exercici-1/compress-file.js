@@ -1,3 +1,6 @@
+// Nivell 2
+// Exercici 1
+// Creu una funció que comprimeixi el file del nivell 1.
 const zlib = require("zlib");
 const fs = require("fs");
 
