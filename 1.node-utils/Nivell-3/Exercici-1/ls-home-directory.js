@@ -6,15 +6,9 @@ function ls_dir_function() {
   const os = require("os");
 
   if (os.platform() === "win32") {
-    const { spawn } = require("child_process");
-
     const username = os.userInfo().username;
-
-    const defaults = {
-      cwd: `C:\\Users\\ + ${username}`
-    }
-
-    const dir = spawn("dir", { shell: true }, defaults);
+    const { spawn } = require("child_process");
+    const dir = spawn("dir", { cwd: os.homedir(), shell: true });
 
     dir.stdout.on("data", (data) => {
       console.log(`stdout: ${data}`);
