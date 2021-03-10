@@ -4,11 +4,7 @@ const { join } = require("path");
 const inbox = join(__dirname, "inbox");
 const outbox = join(__dirname, "outbox");
 
-const reverseText = str =>
-  str
-  .split("")
-  .reverse()
-  .join("");
+const reverseText = str => str.split("").reverse().join("");
 
 // Read and reverse contents of text files in a directory
 fs.readdir(inbox, (error, files) => {
