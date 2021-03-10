@@ -6,29 +6,6 @@ const outbox = join(__dirname, "outbox");
 
 const reverseText = str => str.split("").reverse().join("");
 
-// Read and reverse contents of text files in a directory
-fs.readdir(inbox, (error, files) => {
-  if (error) {
-    return console.log("Error: Folder inaccessible");
-  }
-
-  files.forEach(file => {
-    fs.readFile(join(inbox, file), "utf8", (error, data) => {
-      if (error) {
-        return console.log("Error: File error");
-      }
-
-      fs.writeFile(join(outbox, file), reverseText(data), error => {
-        if (error) {
-          return console.log("Error: File could not be saved!");
-        }
-
-        console.log(`${file} was successfully saved in the outbox!`);
-      });
-    });
-  });
-});
-
 const getFiles = () => {
   return new Promise((resolve, reject) => {
     fs.readdir(inbox, (err, fl) => {
@@ -67,3 +44,12 @@ const writeFiles = (file, data) => {
     });
   });
 }
+
+getFiles()
+  .then(files => files.forEach(
+    file => {
+      readFiles(file);
+    }
+  ))
+  .then(data => writeFiles(outbox, data))
+  .catch(err => console.log(err));
