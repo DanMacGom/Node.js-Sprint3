@@ -48,8 +48,8 @@ const writeFiles = (file, data) => {
 getFiles()
   .then(files => files.forEach(
     file => {
-      readFiles(file);
+      readFiles(file)
+        .then(data => writeFiles(file, data));
     }
   ))
-  .then(data => writeFiles(outbox, data))
   .catch(err => console.log(err));
